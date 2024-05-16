@@ -1,0 +1,40 @@
+networks:
+  lv-network:
+    external: true
+
+services:
+  nginx:
+    container_name: lv-nginx
+    image: nginx
+    networks:
+      - lv-network
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
+  pgdb:
+    container_name: pgdb
+    image: postgres
+    restart: always
+    networks: 
+      - lv-network
+    shm_size: 128mb
+    volumes:
+      - /postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: lvtest
+      POSTGRES_PASSWORD: lvtest
+      PGDATA: /data/postgres
+    
+  backendapi:
+    container_name: backendapi
+    networks:
+      - lv-network
+    image: be-python-3-12:1.0.0
+    volumes:
+      - ${SOURCEROOT}/backend/lightvisiontest/:/backend/
+    command: manage.py runserver 0.0.0.0:8000
