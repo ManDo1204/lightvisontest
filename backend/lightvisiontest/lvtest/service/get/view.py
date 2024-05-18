@@ -26,6 +26,7 @@ class Get(APIView):
         try:
             image = Image.objects.get(text_id=input_data.validated_data['image_id'])
             image_url = image.image.path
+            file_name = image.image.name
 
         except Exception as e:
             return JsonResponse({
@@ -33,4 +34,4 @@ class Get(APIView):
                 'error': e
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        return FileResponse(open(image_url, 'rb'), filename='image.png')
+        return FileResponse(open(image_url, 'rb'), filename=file_name)

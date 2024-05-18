@@ -22,8 +22,8 @@ services:
       - lv-network
     shm_size: 128mb
     volumes:
-      - /postgres:/data/postgres
-      - /data:/var/lib/postgresql/data
+      - ./postgres/db/:/data/postgres/
+      - ./postgres/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:

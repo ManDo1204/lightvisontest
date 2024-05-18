@@ -13,10 +13,6 @@ from django.core.files.images import ImageFile
 import io
 
 
-class GetImageFail(Exception):
-    pass
-
-
 class InputSerializer(serializers.Serializer):
     image_url = serializers.URLField(max_length=200, min_length=None, allow_blank=False)
 
@@ -62,7 +58,11 @@ class Save(APIView):
         file_name = file.replace('.'+file_ext, '')
 
         # File name should have the rule to named
-        file_name = file_name + '_' + str(datetime.now())
+        dt_now = str(datetime.now())
+        dt_object = datetime.strptime(dt_now, "%Y-%m-%d %H:%M:%S.%f")
+        output_timestamp = dt_object.strftime("%Y-%m-%d_%H%M%S.%f")
+        file_name = file_name + '_' + output_timestamp
+        
         new_file = file_name + '.' + file_ext
 
         image_obj = ImageFile(io.BytesIO(get_image.content), name=new_file)
