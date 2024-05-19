@@ -23,7 +23,7 @@ class SendRequest:
             print(errh.args[0])
 
         response = json.loads(r.content.decode('utf-8'))
-        print('- RESPONSE:')
+        print('\n- RESPONSE:')
         for k,v in response.items():
             print('\t' + k + ': ' + v)
     
@@ -53,7 +53,7 @@ class SendRequest:
         
         response = json.loads(r.content.decode('utf-8'))
         results = response['results']
-        print('- RESPONSE:\n')
+        print('\n- RESPONSE:\n')
         print(f'Total: {response['count']}')
         print('List:\n')
         data = pd.DataFrame(results)
@@ -80,7 +80,7 @@ class SendRequest:
         with open(file_dir, "wb") as fp:
             fp.write(r.content)
         
-        print("Image downloaded successfully! Find the image in /image_data/\n")
+        print("\nImage downloaded successfully! Find the image in /image_data/\n")
 
     def remove_image(self):
 
@@ -94,25 +94,25 @@ class SendRequest:
 
         response = json.loads(r.content.decode('utf-8'))
         
-        print('- RESPONSE:\n')
+        print('\n- RESPONSE:\n')
         for k,v in response.items():
             print('\t' + k + ': ' + v)
 
     def upload_image(self):
 
         image = input('\tEnter the path to the image that you want to upload: ')
-        file_ext = image.split('.')[-1]  
+        
         with open(image, 'rb') as f:
-            image_data = f.read()
-            headers = {'Content-Type': f'media/{file_ext}'}
-            
-            try: 
-                r = requests.post(cf.HOST + 'lvtest/upload/', headers=headers, data=image_data)
-                # r = requests.post(cf.HOST + 'lvtest/upload/', files=files)
-                r.raise_for_status() 
-            except requests.exceptions.HTTPError as errh: 
-                print("<!> HTTP Error") 
-                print(errh.args[0])
+            img_data = f.read()
+
+        files = {"image": (image, img_data)}
+
+        try: 
+            r = requests.post(cf.HOST + 'lvtest/upload/', files=files)
+            r.raise_for_status() 
+        except requests.exceptions.HTTPError as errh: 
+            print("<!> HTTP Error") 
+            print(errh.args[0])
 
         response = json.loads(r.content.decode('utf-8'))
 
