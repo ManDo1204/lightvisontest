@@ -3,7 +3,7 @@ import config as cf
 import json
 import pandas as pd
 import re
-import base64
+from download import download_image_from_tensorflow
 
 
 
@@ -120,15 +120,19 @@ class SendRequest:
         for k,v in response.items():
             print('\t' + k + ': ' + v)
 
+    def download_image_from_tensorflow(self):
+        pass
+
+
 class Instruction:
     host_name = cf.HOST
     keyword_instruction = 'Use the following keywords to call the API that you want:\n\
         \t- save: Save an image from the url that you add.\n\
         \t- upload: Upload an image from local.(*)\n\
-        \t- multi_upload: Upload many images from local.(*)\n\
-        \t- list: Get list of the images information that are stored in database\n\
-        \t- get: Download an image from database\n\
-        \t- del: Delete an image in database\n\
+        \t- list: Get list of the images information that are stored in database.\n\
+        \t- get: Download an image from database.\n\
+        \t- del: Delete an image in database.\n\
+        \t- download: Download images from tensorflow.\n\
         Enter "x" to exit the program.\n'
     
     instruction = f'Use this program to interact with the server\n\
@@ -164,6 +168,8 @@ if __name__ == '__main__':
                 req.remove_image()
             elif call == 'upload':
                 req.upload_image()
+            elif call == 'download':
+                download_image_from_tensorflow()
             elif call == 'x':
                 exit()
             else:
