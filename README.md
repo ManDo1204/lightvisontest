@@ -64,5 +64,3 @@ III. Test instruction
     1. Setup environment, download needed library.
     2. Run project with docker desktop.
     3. Run file /script/scripts.py to launch project.
-
-    * More detail in /documentation/Insturction.docx
