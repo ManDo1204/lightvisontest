@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "5ebbda30-57ae-4ca8-988c-78172272bd3a",
+		"name": "LV Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32004320"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://lvtest.me/lvtest/get/",
+					"protocol": "http",
+					"host": [
+						"lvtest",
+						"me"
+					],
+					"path": [
+						"lvtest",
+						"get",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://lvtest.me/lvtest/get-list/?search=&filetype=png&ordering=-id&page_size=5&page=2",
+					"protocol": "http",
+					"host": [
+						"lvtest",
+						"me"
+					],
+					"path": [
+						"lvtest",
+						"get-list",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": ""
+						},
+						{
+							"key": "filetype",
+							"value": "png"
+						},
+						{
+							"key": "ordering",
+							"value": "-id"
+						},
+						{
+							"key": "page_size",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image_url",
+							"value": "https://storage.googleapis.com/tfds-data/visualization/fig/beans-0.1.0.png",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://lvtest.me/lvtest/save/",
+					"protocol": "http",
+					"host": [
+						"lvtest",
+						"me"
+					],
+					"path": [
+						"lvtest",
+						"save",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/Project/interview_test/lightvisontest/scripts/image_data/file.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://lvtest.me/lvtest/upload/",
+					"protocol": "http",
+					"host": [
+						"lvtest",
+						"me"
+					],
+					"path": [
+						"lvtest",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image_url",
+							"value": "https://storage.googleapis.com/tfds-data/visualization/fig/beans-0.1.0.png",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://lvtest.me/lvtest/save/",
+					"protocol": "http",
+					"host": [
+						"lvtest",
+						"me"
+					],
+					"path": [
+						"lvtest",
+						"save",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

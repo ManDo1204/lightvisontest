@@ -1,0 +1,726 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "LightVision Test",
+    "description": "The LightVison test API allows you to save and query image data.",
+    "contact": {
+      "email": "ddmanh.96@gmail.com"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://lvtest.me/lvtest/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Image",
+      "description": "Everything about image",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://lvtest.me/lvtest/"
+      }
+    }
+  ],
+  "paths": {
+    "/save": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Save an image from the url",
+        "description": "Save an image from the url to database",
+        "requestBody": {
+          "description": "Save an image from the url to database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "image_url"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "save"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "required": [
+                  "image_url"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "save"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "image_url"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "save"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful save image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "image_name",
+                    "image_id"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "image_name": {
+                      "type": "string"
+                    },
+                    "image_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "image_name",
+                    "image_id"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "image_name": {
+                      "type": "string"
+                    },
+                    "image_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid params"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Upload an image from local",
+        "description": "Upload an image from local and save to database",
+        "requestBody": {
+          "description": "Upload an image from local and save to database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "xml": {
+                  "name": "upload"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "xml": {
+                  "name": "upload"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "xml": {
+                  "name": "upload"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful save image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "message",
+                    "image_name",
+                    "image_id"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "image_name": {
+                      "type": "string"
+                    },
+                    "image_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "message",
+                    "image_name",
+                    "image_id"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "image_name": {
+                      "type": "string"
+                    },
+                    "image_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid params"
+          }
+        }
+      }
+    },
+    "/remove": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Remove an image in database",
+        "description": "Remove an image in database",
+        "requestBody": {
+          "description": "Remove an image in database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "image_id"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_id": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "remove"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "required": [
+                  "image_id"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_id": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "remove"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "image_id"
+                ],
+                "type": "object",
+                "properties": {
+                  "image_id": {
+                    "type": "string"
+                  }
+                },
+                "xml": {
+                  "name": "remove"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful save image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "status"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "status"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid params"
+          }
+        }
+      }
+    },
+    "/get": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Download an image from database",
+        "description": "Download an image from database",
+        "operationId": "Download an image from database",
+        "parameters": [
+          {
+            "name": "image_id",
+            "in": "query",
+            "description": "Need to query the image",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "image"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string",
+                        "format": "binary"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "image"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string",
+                        "format": "binary"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/get-list": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Get list of images from database",
+        "description": "Get list of images from database",
+        "operationId": "Get list of images from database",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Need to query the image that contain the search value in its name or filetype",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filetype",
+            "in": "query",
+            "description": "Need to filter by extension of the images name",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "description": "Need to sort the result list",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The max number of the records in the result list",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "total",
+                      "pre",
+                      "next",
+                      "result"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "total": {
+                        "type": "integer"
+                      },
+                      "pre": {
+                        "type": "string"
+                      },
+                      "next": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "total",
+                      "pre",
+                      "next",
+                      "result"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "total": {
+                        "type": "integer"
+                      },
+                      "pre": {
+                        "type": "string"
+                      },
+                      "next": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Save": {
+        "required": [
+          "image_url"
+        ],
+        "type": "object",
+        "properties": {
+          "image_url": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "save"
+        }
+      },
+      "Save_response": {
+        "required": [
+          "image_name",
+          "image_id"
+        ],
+        "type": "object",
+        "properties": {
+          "image_name": {
+            "type": "string"
+          },
+          "image_id": {
+            "type": "string"
+          }
+        }
+      },
+      "Upload": {
+        "required": [
+          "image"
+        ],
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "xml": {
+          "name": "upload"
+        }
+      },
+      "Upload_response": {
+        "required": [
+          "message",
+          "image_name",
+          "image_id"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "image_name": {
+            "type": "string"
+          },
+          "image_id": {
+            "type": "string"
+          }
+        }
+      },
+      "Remove": {
+        "required": [
+          "image_id"
+        ],
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "remove"
+        }
+      },
+      "Remove_response": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "Get": {
+        "required": [
+          "image_id"
+        ],
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "get"
+        }
+      },
+      "Get_response": {
+        "required": [
+          "image"
+        ],
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
+      "Get-list": {
+        "required": [
+          "search",
+          "filetype",
+          "ordering",
+          "page_size",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          },
+          "filetype": {
+            "type": "string"
+          },
+          "ordering": {
+            "type": "string"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "get-list"
+        }
+      },
+      "Get-list_response": {
+        "required": [
+          "total",
+          "pre",
+          "next",
+          "result"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          },
+          "pre": {
+            "type": "string"
+          },
+          "next": {
+            "type": "string"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
