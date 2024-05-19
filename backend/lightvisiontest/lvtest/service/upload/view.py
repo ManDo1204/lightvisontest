@@ -33,13 +33,21 @@ class Upload(APIView):
                 'message': 'Invalid param!'
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        image = input_data.validated_data['image']
-        file_name = image.name
+        image_input = input_data.validated_data['image']
+        file_name = image_input.name
         file_extension = file_name.split('.')[-1]
+        file_name = file_name.replace('.'+file_extension, '')
+        dt_now = str(datetime.now())
+        dt_object = datetime.strptime(dt_now, "%Y-%m-%d %H:%M:%S.%f")
+        output_timestamp = dt_object.strftime("%Y-%m-%d_%H%M%S.%f")
+        file_name = file_name + '_' + output_timestamp
+        new_file_name = file_name + '.' + file_extension
+
+        image_input.name = new_file_name
 
         try:
             image = Image.objects.create(
-                image=image,
+                image=image_input,
                 name=file_name,
                 source='local upload',
                 filetype=file_extension
@@ -51,5 +59,6 @@ class Upload(APIView):
 
         return JsonResponse({
             'message': 'Upload Image Success',
+            'image_name': image.name + '.' + image.filetype,
             'image_id': image.text_id
         }, status=status.HTTP_200_OK)
